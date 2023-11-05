@@ -1,6 +1,3 @@
-// Represents a single zone (Yard, Porch, House).
-// Renders the ColorButton components and the CatIcons based on the state.
-
 import React from "react";
 import ColorButton from "./ColorButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +9,7 @@ const Zone = ({ name, cats, incrementCatCount }) => {
 		return Array(count).fill(
 			<FontAwesomeIcon
 				icon={faCat}
-				className={color}
+				className={`cat-icon ${color}`}
 			/>
 		);
 	};
@@ -20,6 +17,13 @@ const Zone = ({ name, cats, incrementCatCount }) => {
 	return (
 		<div className={`zone ${name.toLowerCase()}`}>
 			<h2>{name}</h2>
+			{/* Moved the cats div above the buttons div */}
+			<div className="cats">
+				{/* Render CatIcons based on cats state */}
+				{Object.entries(cats).map(([color, count]) =>
+					generateCatIcons(color, count)
+				)}
+			</div>
 			<div className="buttons">
 				<ColorButton
 					color="orange"
@@ -37,12 +41,6 @@ const Zone = ({ name, cats, incrementCatCount }) => {
 					color="black"
 					onClick={() => incrementCatCount(name.toLowerCase(), "black")}
 				/>
-			</div>
-			<div className="cats">
-				{/* Render CatIcons based on cats state */}
-				{Object.entries(cats).map(([color, count]) =>
-					generateCatIcons(color, count)
-				)}
 			</div>
 		</div>
 	);

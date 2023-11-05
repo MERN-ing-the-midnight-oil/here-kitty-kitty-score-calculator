@@ -16,8 +16,26 @@ function App() {
 	const [hasMostWhiteCats, setHasMostWhiteCats] = useState(false);
 	const [hasMostBlackCats, setHasMostBlackCats] = useState(false);
 
+	// State to track error messages
+	const [error, setError] = useState("");
+
 	// Function to increment cat count by adding cat objects
 	const incrementCatCount = (zone, color) => {
+		// Calculate total cats of the same color across all zones
+		const totalCatsOfColor = Object.values(cats).reduce((sum, zoneCats) => {
+			return sum + zoneCats.filter((cat) => cat.color === color).length;
+		}, 0);
+
+		// Check if adding another cat exceeds the limit
+		if (totalCatsOfColor >= 10) {
+			// Show an alert message
+			alert(
+				`That's too many ${color} cats! "Here Kitty-Kitty" only uses 10 of each colored cat in game-play.`
+			);
+			return; // Exit the function early
+		}
+
+		// Add the new cat as usual
 		const newCat = { id: Date.now(), color }; // Use timestamp for unique id
 		setCats((prevCats) => ({
 			...prevCats,

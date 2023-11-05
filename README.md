@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Here Kitty Kitty Score Calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application is a digital score calculator for the "Here Kitty Kitty" board game by Fireside Games. It allows players to easily keep track of their scores based on the number and placement of cat figures within various zones.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Add or remove cat figures from different zones (Yard, Porch, House).
+- Calculate the total score based on the placement of the cats and various bonus conditions.
+- User-friendly interface with clickable cat icons and intuitive controls.
+- Error handling to prevent adding more than 10 cats of any color.
 
-### `npm start`
+## Problem Solving and Strategy
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Managing State
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+One of the primary challenges in building this application was effectively managing the state of the cats within each zone. The game's rules required a dynamic and responsive state that could handle adding, removing, and calculating cats in real-time. I decided to use React's useState hook to manage the state of the cats, which allowed for an efficient and reactive UI.
 
-### `npm test`
+### Implementing Interactivity
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Another challenge was making the cat icons interactive. Players needed to be able to add cats by clicking on color-coded buttons and remove them by clicking on the icons themselves. To accomplish this, I implemented functions that would increment and decrement the cat count based on user interactions. These functions updated the state and subsequently the UI.
 
-### `npm run build`
+### Handling Errors
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app ensures users cannot add an impossible number of cats. I implemented an error handling mechanism that would alert the player if they tried to exceed the limit. This involved a conditional check within the function responsible for adding cats, and if the condition was violated, an error state was updated, triggering a user-friendly alert.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Score Calculation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The score calculation was a key feature of this application, designed to accurately reflect the unique scoring rules of "Here Kitty Kitty". The logic was centered around the state, which kept track of the number of cats in each zone. The calculation was then tailored to assign different point values to cats depending on their placement, such as in the House or Porch, along with bonus points for certain conditions. This was achieved through a series of functions that efficiently evaluated the state and applied the game's scoring rules to produce an accurate total score.
 
-### `npm run eject`
+### Conclusion
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Building this application was an exercise in state management, interactivity, error handling, and UI design.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Install dependencies with `npm install`.
+4. Run the application with `npm start`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the LICENSE.md file for details.

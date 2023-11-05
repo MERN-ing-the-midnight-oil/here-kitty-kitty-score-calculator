@@ -97,7 +97,7 @@ function App() {
 			<div className="instructions">
 				<h1>Here Kitty Kitty Score Calculator</h1>
 				<p>
-					This tool helps you calculate your score at the end of playing
+					This tool calculates your score at the end of playing
 					<a
 						href="https://boardgamegeek.com/boardgame/187289/here-kitty-kitty"
 						target="_blank"

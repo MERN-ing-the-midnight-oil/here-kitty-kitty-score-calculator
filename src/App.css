@@ -13,3 +13,15 @@
 .cat-icon.black {
   color: black;
 }
+
+.zone.yard {
+  background-color: #e0f8d8; /* Light green */
+}
+
+.zone.porch {
+  background-color: #f5e7c4; /* Light tan */
+}
+
+.zone.house {
+  background-color: #d1e7f8; /* Light blue */
+}

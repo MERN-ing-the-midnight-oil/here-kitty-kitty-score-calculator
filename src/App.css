@@ -7,21 +7,25 @@
 }
 
 .cat-icon.white {
+  /* color: white;
+  text-shadow: 1px 1px 3px #000; */
   color: white;
+  -webkit-text-stroke: 3px black; 
 }
+
 
 .cat-icon.black {
   color: black;
 }
 
 .zone.yard {
-  background-color: #e0f8d8; /* Light green */
+  background-color: #b8e0a1; /* Darker green */
 }
 
 .zone.porch {
-  background-color: #f5e7c4; /* Light tan */
+  background-color: #e0d1a2; /* Darker tan */
 }
 
 .zone.house {
-  background-color: #d1e7f8; /* Light blue */
+  background-color: #a1c4e0; /* Darker blue */
 }

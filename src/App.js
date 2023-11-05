@@ -82,7 +82,6 @@ function App() {
 				cats={cats.house}
 				incrementCatCount={incrementCatCount}
 			/>
-			<div>Total Score: {calculateTotalScore()}</div>
 
 			<div>
 				<input
@@ -115,6 +114,9 @@ function App() {
 					onChange={(e) => setHasMostBlackCats(e.target.checked)}
 				/>
 				Most Black Cats
+			</div>
+			<div style={{ fontSize: "24px", fontWeight: "bold", marginTop: "20px" }}>
+				Total Score: {calculateTotalScore()}
 			</div>
 		</div>
 	);

@@ -76,6 +76,32 @@ function App() {
 
 	return (
 		<div className="app">
+			<div className="instructions">
+				<h1>Here Kitty Kitty Score Calculator</h1>
+				<p>
+					This tool helps you calculate your score at the end of playing
+					<a
+						href="https://boardgamegeek.com/boardgame/187289/here-kitty-kitty"
+						target="_blank"
+						rel="noopener noreferrer">
+						{" "}
+						"Here Kitty Kitty"
+					</a>{" "}
+					by Fireside Games.
+				</p>
+				<p>
+					Add cats to each zone by clicking on the color buttons. Each cat in
+					the house scores 5 points, and each cat on the porch scores 3 points.
+					If you have 5 or more cats of the same color, you score an additional
+					5 points. Having at least one cat of each color on your property adds
+					another 5 points. You can also gain 3 bonus points for having the most
+					cats matching a color.
+				</p>
+				<p>
+					Made a mistake? You can click on a cat icon to remove it from the
+					area.
+				</p>
+			</div>
 			<Zone
 				name="Yard"
 				cats={cats.yard}

@@ -1,29 +1,27 @@
 import React from "react";
-import { useState } from "react";
 import ColorButton from "./ColorButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCat } from "@fortawesome/free-solid-svg-icons";
 
-const Zone = ({ name, cats, incrementCatCount }) => {
-	// Function to generate cat icon strings
-	const generateCatIcons = (color, count) => {
-		return Array(count).fill(
+const Zone = ({ name, cats, incrementCatCount, removeCat }) => {
+	// Function to generate cat icon elements
+	const generateCatIcons = () => {
+		return cats.map((cat) => (
 			<FontAwesomeIcon
+				key={cat.id}
 				icon={faCat}
-				className={`cat-icon ${color}`}
+				className={`cat-icon ${cat.color}`}
+				onClick={() => removeCat(name.toLowerCase(), cat.id)}
 			/>
-		);
+		));
 	};
 
 	return (
 		<div className={`zone ${name.toLowerCase()}`}>
 			<h2>{name}</h2>
-			{/* Moved the cats div above the buttons div */}
 			<div className="cats">
 				{/* Render CatIcons based on cats state */}
-				{Object.entries(cats).map(([color, count]) =>
-					generateCatIcons(color, count)
-				)}
+				{generateCatIcons()}
 			</div>
 			<div className="buttons">
 				<ColorButton

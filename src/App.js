@@ -5,9 +5,9 @@ import Zone from "./Zone";
 function App() {
 	// State to track the number of cats in each zone by color
 	const [cats, setCats] = useState({
-		yard: { orange: 0, grey: 0, white: 0, black: 0 },
-		porch: { orange: 0, grey: 0, white: 0, black: 0 },
-		house: { orange: 0, grey: 0, white: 0, black: 0 },
+		yard: [],
+		porch: [],
+		house: [],
 	});
 
 	// State variables for checkboxes
@@ -16,14 +16,20 @@ function App() {
 	const [hasMostWhiteCats, setHasMostWhiteCats] = useState(false);
 	const [hasMostBlackCats, setHasMostBlackCats] = useState(false);
 
-	// Function to increment cat count
+	// Function to increment cat count by adding cat objects
 	const incrementCatCount = (zone, color) => {
+		const newCat = { id: Date.now(), color }; // Use timestamp for unique id
 		setCats((prevCats) => ({
 			...prevCats,
-			[zone]: {
-				...prevCats[zone],
-				[color]: prevCats[zone][color] + 1,
-			},
+			[zone]: [...prevCats[zone], newCat],
+		}));
+	};
+
+	//This function takes the zone and the catId as arguments and updates the state by filtering out the cat with the matching catId.
+	const removeCat = (zone, catId) => {
+		setCats((prevCats) => ({
+			...prevCats,
+			[zone]: prevCats[zone].filter((cat) => cat.id !== catId),
 		}));
 	};
 
@@ -31,27 +37,30 @@ function App() {
 	const calculateTotalScore = () => {
 		// Calculate score based on cats in house and porch
 		let score =
-			cats.house.orange * 5 +
-			cats.house.grey * 5 +
-			cats.house.white * 5 +
-			cats.house.black * 5 +
-			cats.porch.orange * 3 +
-			cats.porch.grey * 3 +
-			cats.porch.white * 3 +
-			cats.porch.black * 3;
+			cats.house.filter((cat) => cat.color === "orange").length * 5 +
+			cats.house.filter((cat) => cat.color === "grey").length * 5 +
+			cats.house.filter((cat) => cat.color === "white").length * 5 +
+			cats.house.filter((cat) => cat.color === "black").length * 5 +
+			cats.porch.filter((cat) => cat.color === "orange").length * 3 +
+			cats.porch.filter((cat) => cat.color === "grey").length * 3 +
+			cats.porch.filter((cat) => cat.color === "white").length * 3 +
+			cats.porch.filter((cat) => cat.color === "black").length * 3;
 
 		// Add 5 points for 5 or more cats of the same color
-		Object.values(cats).forEach((zone) => {
-			Object.values(zone).forEach((count) => {
-				if (count >= 5) score += 5;
-			});
+		["orange", "grey", "white", "black"].forEach((color) => {
+			let count = cats.yard
+				.concat(cats.porch, cats.house)
+				.filter((cat) => cat.color === color).length;
+			if (count >= 5) score += 5;
 		});
 
 		// Add 5 points for 1 cat of each color
 		if (
-			Object.values(cats.yard).every((count) => count > 0) ||
-			Object.values(cats.porch).every((count) => count > 0) ||
-			Object.values(cats.house).every((count) => count > 0)
+			["orange", "grey", "white", "black"].every((color) =>
+				cats.yard
+					.concat(cats.porch, cats.house)
+					.some((cat) => cat.color === color)
+			)
 		) {
 			score += 5;
 		}
@@ -71,16 +80,19 @@ function App() {
 				name="Yard"
 				cats={cats.yard}
 				incrementCatCount={incrementCatCount}
+				removeCat={removeCat}
 			/>
 			<Zone
 				name="Porch"
 				cats={cats.porch}
 				incrementCatCount={incrementCatCount}
+				removeCat={removeCat}
 			/>
 			<Zone
 				name="House"
 				cats={cats.house}
 				incrementCatCount={incrementCatCount}
+				removeCat={removeCat}
 			/>
 
 			<div>

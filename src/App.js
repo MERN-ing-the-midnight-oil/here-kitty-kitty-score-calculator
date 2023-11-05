@@ -95,7 +95,7 @@ function App() {
 	return (
 		<div className="app">
 			<div className="instructions">
-				<h1>Here Kitty Kitty Score Calculator</h1>
+				<h1>"Here Kitty Kitty" Score Calculator</h1>
 				<p>
 					This tool calculates your score at the end of playing
 					<a
@@ -112,12 +112,14 @@ function App() {
 					the house scores 5 points, and each cat on the porch scores 3 points.
 					If you have 5 or more cats of the same color, you score an additional
 					5 points. Having at least one cat of each color on your property adds
-					another 5 points. You can also gain 3 bonus points for having the most
-					cats matching a color.
+					another 5 points. Each color where you are the player with the most
+					cats earns you 3 more points.
 				</p>
 				<p>
-					Made a mistake? You can click on a cat icon to remove it from the
-					area.
+					Made a mistake?{" "}
+					<div style={{ fontSize: "16px", fontWeight: "bold" }}>
+						just click on any extra cat icon to delete it!
+					</div>
 				</p>
 			</div>
 			<Zone
@@ -138,40 +140,43 @@ function App() {
 				incrementCatCount={incrementCatCount}
 				removeCat={removeCat}
 			/>
+			<div style={{ paddingTop: "20px" }}>
+				{" "}
+				<div>
+					<input
+						type="checkbox"
+						checked={hasMostOrangeCats}
+						onChange={(e) => setHasMostOrangeCats(e.target.checked)}
+					/>
+					I am the player with the most ORANGE cats.
+				</div>
+				<div>
+					<input
+						type="checkbox"
+						checked={hasMostGreyCats}
+						onChange={(e) => setHasMostGreyCats(e.target.checked)}
+					/>
+					I am the player with the most GREY cats.
+				</div>
+				<div>
+					<input
+						type="checkbox"
+						checked={hasMostWhiteCats}
+						onChange={(e) => setHasMostWhiteCats(e.target.checked)}
+					/>
+					I am the player with the most WHITE cats.
+				</div>
+				<div>
+					<input
+						type="checkbox"
+						checked={hasMostBlackCats}
+						onChange={(e) => setHasMostBlackCats(e.target.checked)}
+					/>
+					I am the player with the most BLACK cats.
+				</div>
+			</div>
 
-			<div>
-				<input
-					type="checkbox"
-					checked={hasMostOrangeCats}
-					onChange={(e) => setHasMostOrangeCats(e.target.checked)}
-				/>
-				Most Orange Cats
-			</div>
-			<div>
-				<input
-					type="checkbox"
-					checked={hasMostGreyCats}
-					onChange={(e) => setHasMostGreyCats(e.target.checked)}
-				/>
-				Most Grey Cats
-			</div>
-			<div>
-				<input
-					type="checkbox"
-					checked={hasMostWhiteCats}
-					onChange={(e) => setHasMostWhiteCats(e.target.checked)}
-				/>
-				Most White Cats
-			</div>
-			<div>
-				<input
-					type="checkbox"
-					checked={hasMostBlackCats}
-					onChange={(e) => setHasMostBlackCats(e.target.checked)}
-				/>
-				Most Black Cats
-			</div>
-			<div style={{ fontSize: "24px", fontWeight: "bold", marginTop: "20px" }}>
+			<div style={{ fontSize: "36px", fontWeight: "bold", marginTop: "20px" }}>
 				Total Score: {calculateTotalScore()}
 			</div>
 		</div>

@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/here-kitty-kitty-score-calculator/static/css/main.f1e0a02c.css",
+    "main.js": "/here-kitty-kitty-score-calculator/static/js/main.3f020751.js",
+    "index.html": "/here-kitty-kitty-score-calculator/index.html",
+    "main.f1e0a02c.css.map": "/here-kitty-kitty-score-calculator/static/css/main.f1e0a02c.css.map",
+    "main.3f020751.js.map": "/here-kitty-kitty-score-calculator/static/js/main.3f020751.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f1e0a02c.css",
+    "static/js/main.3f020751.js"
+  ]
+}

@@ -52,18 +52,11 @@ function App() {
 		}));
 	};
 
-	// Function to calculate total score
 	const calculateTotalScore = () => {
 		// Calculate score based on cats in house and porch
 		let score =
-			cats.house.filter((cat) => cat.color === "orange").length * 5 +
-			cats.house.filter((cat) => cat.color === "grey").length * 5 +
-			cats.house.filter((cat) => cat.color === "white").length * 5 +
-			cats.house.filter((cat) => cat.color === "black").length * 5 +
-			cats.porch.filter((cat) => cat.color === "orange").length * 3 +
-			cats.porch.filter((cat) => cat.color === "grey").length * 3 +
-			cats.porch.filter((cat) => cat.color === "white").length * 3 +
-			cats.porch.filter((cat) => cat.color === "black").length * 3;
+			cats.house.length * 5 + // 5 points for each cat in the house
+			cats.porch.length * 3; // 3 points for each cat on the porch
 
 		// Add 5 points for 5 or more cats of the same color
 		["orange", "grey", "white", "black"].forEach((color) => {
@@ -90,12 +83,21 @@ function App() {
 		score += hasMostWhiteCats ? 3 : 0;
 		score += hasMostBlackCats ? 3 : 0;
 
-		const areAllHouseCatsSameColor = cats.house.every(
-			(cat, _, [first]) => cat === first
-		);
-		if (cats.house.length > 0 && areAllHouseCatsSameColor) {
-			score += 10; // Add 10 points if all cats in the house are the same color
+		// Bonus points logic for all cats in the house being the same color
+		const getUniqueColorCount = (catsArray) => {
+			const colorTally = catsArray.reduce((tally, cat) => {
+				tally[cat.color] = (tally[cat.color] || 0) + 1;
+				return tally;
+			}, {});
+			return Object.keys(colorTally).length;
+		};
+
+		const areAllHouseCatsSameColor = getUniqueColorCount(cats.house) === 1;
+		if (areAllHouseCatsSameColor) {
+			score += 10; // Add 10 bonus points if all cats in the house are the same color
 		}
+
+		// Return the final score after all calculations
 		return score;
 	};
 

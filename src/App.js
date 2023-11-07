@@ -44,6 +44,7 @@ function App() {
 	};
 
 	//This function takes the zone and the catId as arguments and updates the state by filtering out the cat with the matching catId.
+	//this is a function that is passed down to zone component as a prop
 	const removeCat = (zone, catId) => {
 		setCats((prevCats) => ({
 			...prevCats,
@@ -89,6 +90,12 @@ function App() {
 		score += hasMostWhiteCats ? 3 : 0;
 		score += hasMostBlackCats ? 3 : 0;
 
+		const areAllHouseCatsSameColor = cats.house.every(
+			(cat, _, [first]) => cat === first
+		);
+		if (cats.house.length > 0 && areAllHouseCatsSameColor) {
+			score += 10; // Add 10 points if all cats in the house are the same color
+		}
 		return score;
 	};
 
@@ -113,7 +120,8 @@ function App() {
 					If you have 5 or more cats of the same color, you score an additional
 					5 points. Having at least one cat of each color on your property adds
 					another 5 points. Each color where you are the player with the most
-					cats earns you 3 more points.
+					cats earns you 3 more points. If all cats in the house are the same
+					color, score an extra 10 points.
 				</p>
 				<p>
 					Made a mistake?{" "}
